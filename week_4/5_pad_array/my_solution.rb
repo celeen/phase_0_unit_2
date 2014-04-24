@@ -27,19 +27,43 @@
 #
 
 # 2. Initial Solution
-def pad(array, number, filler = nil)
-  if array.length >= number
-    array
-  else
-    filler_spaces = number - array.length
-    filler_spaces.times { array << filler }
-  end
-  return array
-end
+# class Array
+#   def pad!(number, filler = nil)
+#     if self.length >= number
+#       self
+#     else
+#       filler_spaces = number - self.length
+#       filler_spaces.times { self << filler }
+#     end
+#     return self
+#   end
+  
+#   def pad(number, filler = nil)
+#     array = self.clone
+#     if array.length >= number
+#         array
+#     else
+#         filler_spaces = number - array.length
+#         filler_spaces.times { array << filler }
+#     end
+#   return array
+#   end
+# end
 
 
 # 3. Refactored Solution
-
+class Array
+  def pad!(number, filler = nil)
+    self.length >= number ? self : (number - self.length).times { self << filler }
+	self  
+  end
+  
+  def pad(number, filler = nil)
+    array = self.clone
+    array.length >= number ? array : (number - array.length).times { array << filler }
+	array
+  end
+end
 
 
 # 4. Reflection 
