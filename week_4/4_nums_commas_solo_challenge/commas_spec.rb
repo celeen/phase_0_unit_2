@@ -1,4 +1,4 @@
-require_relative "my_solution" 
+require_relative "my_solution.rb" 
 #=> Make sure you change this to the name of your code file! Save that file
 # into this repo. 
 
