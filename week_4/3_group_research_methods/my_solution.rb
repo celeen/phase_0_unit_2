@@ -6,17 +6,19 @@ my_family_pets_ages = {"Evi" => 6, "Hoobie" => 3, "George" => 12, "Bogart" => 4,
 
 # Person 1's solution
 def my_array_finding_method(source, thing_to_find)
-	source.select {|member| member.include? thing_to_find}
+	source.select {|x| x.to_s.match(thing_to_find)}
 end
 
 def my_hash_finding_method(source, thing_to_find)
-  # Your code here!
+	(source.select { |k,v| v == thing_to_find }).keys
 end
 
 # Identify and describe the ruby method you implemented. 
-# 
-#
-#
+# I chose select as the primary instrument for both methods. I could also have used a directly related method, like keep_if.
+#Although rubydocs doesn't say too much about select, I've found a bunch of blog posts that laud its power. It cycles through each member of the array, keeping only the members for who the block of code returns true. Alternately, keep_if deletes members for whom the code block returns false.
+#The blogs essentially say that if you have a block of code in which you're using eachdo, creating a new array, and then pushing things into that array if they meet certain criteria, the select method is a more efficient replacement.
+#Initially I chose select for the first array method because it returns an array, and I knew that's what we were going for. It took me a minute to get it right; our array contains integers, and match does not work on integers. Once I added to_s, everything worked fine.
+#The only challenge in the hash method was to output an array rather than another hash, which is where #keys comes from. This method takes
 
 # Person 2
 def my_array_modification_method(source, thing_to_modify)
@@ -69,6 +71,7 @@ end
 
 p my_array_finding_method(i_want_pets, "t") == ["want","pets","but"]
 p my_hash_finding_method(my_family_pets_ages, 3) == ["Hoobie", "Ditto"]
+p my_hash_finding_method(my_family_pets_ages, 3)
 p my_array_modification_method(i_want_pets, 1) == ["I", "want", 4, "pets", "but", "I", "only", "have", 3 ]
 p my_hash_modification_method(my_family_pets_ages, 2) == {"Evi" => 8, "Hoobie" => 5, "George" => 14, "Bogart" => 6, "Poly" => 6, "Annabelle" => 2, "Ditto" => 5}
 p my_array_sorting_method(i_want_pets) == ["3", "4", "I", "but", "have", "only", "pets", "want"]
