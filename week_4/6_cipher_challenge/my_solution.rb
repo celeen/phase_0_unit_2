@@ -83,32 +83,61 @@ def north_korean_cipher(coded_message) #creating a new method called north_korea
 end # THE END
 
 # Your Refactored Solution
+def north_korean_cipher(coded_message)
+    input = coded_message.downcase.split("")
+    decoded_sentence = []
+    alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    input.each do |x|
+      if alpha.include?(x)
+        cipher_index = alpha.index(x) - 4
+        decoded_sentence << alpha[cipher_index]
+      elsif x == "@" || x == "#" || x == "$" || x == "%"|| x == "^" || x == "&"|| x == "*" #What the heck is this doing?
+        decoded_sentence << " "
+      elsif (0..9).to_a.include?(x) # Try this out in IRB. What does   " (0..9).to_a "    do?
+        decoded_sentence << x
+      else
+        decoded_sentence << x
+      end
+      
+    end
+    decoded_sentence = decoded_sentence.join("")
+    if decoded_sentence.match(/\d+/) #What is this matching? Look at Rubular for help. 
+      decoded_sentence.gsub!(/\d+/) { |num| num.to_i / 100 } #He's been known to exaggerate...
+     end  
+  return decoded_sentence # What is this returning?    
+end
 
 
 
-
-p "Test 1"
+# Driver Code:
+p "test 1"
 p north_korean_cipher("m^aerx%e&gsoi!") == "i want a coke!" #This is driver code and should print true
  if north_korean_cipher("m^aerx%e&gsoi!") != "i want a coke!"
      p "Error: Cipher should equal \'i want a coke!\'"
  end
 # Find out what Kim Jong Un is saying below and turn it into driver code as well. Driver Code statements should always return "true"
+p "test 2"
 p north_korean_cipher("syv@tistpi$iex#xli*qswx*hipmgmsyw*erh*ryxvmxmsyw%jsshw^jvsq^syv#1000000#tvsjmxefpi$jevqw.") == "our people eat the most delicious and nutritious foods from our 10000 profitable farms."
-  if north_korean_cipher("syv@tistpi$iex#xli*qswx*hipmgmsyw*erh*ryxvmxmsyw%jsshw^jvsq^syv#1000000#tvsjmxefpi$jevqw.") != "our people eat the most delicious and nutritious foods from our 10000 profitable farms."
+    if north_korean_cipher("syv@tistpi$iex#xli*qswx*hipmgmsyw*erh*ryxvmxmsyw%jsshw^jvsq^syv#1000000#tvsjmxefpi$jevqw.") != "our people eat the most delicious and nutritious foods from our 10000 profitable farms."
      p "Error: Cipher should equal \'our people eat the most delicious and nutritious foods from our 10000 profitable farms.\'"
  end
+p "test 3"
 p north_korean_cipher("syv%ryoiw#evi#liph^xskixliv@fc^kveti-jpezsvih@xsjjii.*hsr'x%xipp&xli#yw!") == "our nukes are held together by grape-flavored toffee. don't tell the us!"
     if north_korean_cipher("syv%ryoiw#evi#liph^xskixliv@fc^kveti-jpezsvih@xsjjii.*hsr'x%xipp&xli#yw!") != "our nukes are held together by grape-flavored toffee. don't tell the us!"
      p "Error: Cipher should equal \'our nukes are held together by grape-flavored toffee. don't tell the us!\'"
  end
+
+p "test 4"
 p north_korean_cipher("mj^csy&qeoi^sri*qmwxeoi,%kir.*vm@csrk-kmp,&csy^ampp*fi&vitpegih*fc@hirrmw&vshqer.") == "if you make one mistake, gen. ri yong-gil, you will be replaced by dennis rodman."
     if north_korean_cipher("mj^csy&qeoi^sri*qmwxeoi,%kir.*vm@csrk-kmp,&csy^ampp*fi&vitpegih*fc@hirrmw&vshqer.") != "if you make one mistake, gen. ri yong-gil, you will be replaced by dennis rodman."
      p "Error: Cipher should equal \'if you make one mistake, gen. ri yong-gil, you will be replaced by dennis rodman.\'"
  end
+p "test 5"
 p north_korean_cipher("ribx^wxst:$wsyxl%osvie,$xlir$neter,#xlir%xli%asvph!") == "next stop: south korea, then japan, then the world!"
     if north_korean_cipher("ribx^wxst:$wsyxl%osvie,$xlir$neter,#xlir%xli%asvph!") != "next stop: south korea, then japan, then the world!"
      p "Error: Cipher should equal \'next stop: south korea, then japan, then the world!\'"
  end
+p "test 6"
 p north_korean_cipher("ger^wsqifshc*nywx^kix^qi&10000*fekw@sj$gssp%vergl@hsvmxsw?") == "can somebody just get me 100 bags of cool ranch doritos?"
     if north_korean_cipher("ger^wsqifshc*nywx^kix^qi&10000*fekw@sj$gssp%vergl@hsvmxsw?") != "can somebody just get me 100 bags of cool ranch doritos?"
      p "Error: Cipher should equal \'can somebody just get me 100 bags of cool ranch doritos?\'"
