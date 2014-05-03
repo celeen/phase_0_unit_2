@@ -67,3 +67,5 @@ end
 
 
 # 4. Reflection 
+# One very interesting thing to me about our refactored solution is that, I at first assumed that our code would implicitly return the array in either instance. However, it seems that in the case that the first statement is false, the last thing ruby evaluates in the false segment (to the right of the colon) is actually the number of times to iterate, rather than the final array. Therefore, to my surprise, it's necessary to call the array to finish.
+#I did lear about the ternary conditional syntax with this exercise: Lienha taught me that, as well as the idea that you must call a class before defining the method in orer to be able to apply the method with the dot after the object.
