@@ -62,28 +62,16 @@
 
 class CreditCard
 	def initialize(card_number)
-		if card_number.to_s.length != 16
-			raise ArgumentError.new("Credit Card must have exactly 16 digits")
-		end
 		@number = card_number.to_s.split("").map!  {|digit| digit.to_i}
+		raise ArgumentError.new("Credit Card must have exactly 16 digits") unless @number.length == 16
+		
 	end
 
 	def check_card
 		#step 1 in the algorithm: double every other digit, starting at the right (ie. the even index numbers)
 		@number.each_index {|index| @number[index] *= 2 if index.even?}
-		#step 2: reduce the numbers that are double digits to one digit
-		@number.map! do |number|
-			number.to_s.split("").reduce(0) {|sum, digit| sum + digit.to_i}
-		end
-		#step 3: add the digits together
-		num_sum = @number.reduce(0) {|sum, n| sum + n}
-
-		if num_sum % 10 == 0
-			return true
-		else
-			return false
-		end
-
+		#step 2 & 3: Joining the numbers into one string is necessary so that separating by characters doesn't include the array brackets and spaces; then we map through the array created by chars and change each member back into an integer before adding them all together. Chaining them makes it a bit harder to read, but more concise overall. I can't decide which is better.
+		@number.join("").chars.map {|digit| digit.to_i}.reduce(:+) % 10 == 0 ? true : false
 	end
 
 end
@@ -105,7 +93,7 @@ p "Argument Error is raised if argument is not equal to 16 digits."
 # p "#check_card expects no argument"
 
 p "Returns true for a valid Credit Card"
-	valid_card = CreditCard.new(6011110035054288)
+	valid_card = CreditCard.new(4563960122001999)
 	p valid_card.check_card == true
 
 
