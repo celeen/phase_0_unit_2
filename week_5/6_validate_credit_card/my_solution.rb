@@ -5,9 +5,21 @@
 
 # 2. Pseudocode
 
-# Input:
-# Output:
+# Input: a 16 digit number
+# Output: when running the check_card method, true, or false
 # Steps:
+# define a class CreditCard
+# define initialization of CreditCard class, which takes one argument, a number
+#if the number is not exactly 16 digits long, raise an argument error
+# define an instance variable number, set equal to the number argument, changed to a string, and split by character, which will return an array of each digit as a string
+# Define #check_card
+# map the array @number, changing each digit to an integer
+# for each even numbered index, double the number in that index
+# do nothing to the other numbers
+# map through the array members, change each to a string and split it. After changing each digit back to an integer, reduce the digits in each member to one digit by addition. 
+# Use reduce again to find the sum of all members of the array.
+# If the sum is divisible by 10, return true
+# else return false
 
 
 # 3. Initial Solution
