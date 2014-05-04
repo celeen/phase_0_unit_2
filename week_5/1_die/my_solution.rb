@@ -41,7 +41,7 @@ end
 class Die
   def initialize(sides)
     if sides < 1
-      raise ArgumentError.new("There should be more than one side")
+      raise ArgumentError.new("A die should have sides!")
     end
     @sides = sides
   end
@@ -65,11 +65,10 @@ p die.sides == 100
 
 p "Test 2 : if sides < 1, argument error is raised"
 begin
-  Die.new([]) 
-rescue ArgumentError => e
-  a = e.message
+  Die.new(0) 
+rescue 
+puts $!.message == "A die should have sides!"
 end
-puts a == "A die should have sides!"
 
 p "Test 3: roll method returns random number between 1 and (sides)"
 p (1..die.sides).include? (die.roll)

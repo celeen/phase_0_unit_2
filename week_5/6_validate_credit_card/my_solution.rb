@@ -61,25 +61,24 @@
 # 4. Refactored Solution
 
 class CreditCard
-	def initialize(number)
-		if number.to_s.length != 16
+	def initialize(card_number)
+		if card_number.to_s.length != 16
 			raise ArgumentError.new("Credit Card must have exactly 16 digits")
 		end
-		@number = number.to_s.split("")
+		@number = card_number.to_s.split("").map!  {|digit| digit.to_i}
 	end
 
 	def check_card
-		@number.map!  {|n| n.to_i}
-		
-		@number.each_index {|i| @number[i] *= 2 if i.even? == true}
-
-		@number.map! do |n|
-			n.to_s.split("").reduce(0) {|sum, digit| sum + digit.to_i}
+		#step 1 in the algorithm: double every other digit, starting at the right (ie. the even index numbers)
+		@number.each_index {|index| @number[index] *= 2 if index.even?}
+		#step 2: reduce the numbers that are double digits to one digit
+		@number.map! do |number|
+			number.to_s.split("").reduce(0) {|sum, digit| sum + digit.to_i}
 		end
-		
-		@number = @number.reduce(0) {|sum, n| sum + n}
+		#step 3: add the digits together
+		num_sum = @number.reduce(0) {|sum, n| sum + n}
 
-		if @number % 10 == 0
+		if num_sum % 10 == 0
 			return true
 		else
 			return false
@@ -99,21 +98,20 @@ end
 p "Argument Error is raised if argument is not equal to 16 digits."
 	begin 
 		CreditCard.new(4)
-	rescue ArgumentError => e
-		a = e.message
+	rescue 
+		puts $!.message == "Credit Card must have exactly 16 digits"
 	end
-	p a == "Credit Card must have exactly 16 digits"
 	
 # p "#check_card expects no argument"
 
 p "Returns true for a valid Credit Card"
-	card = CreditCard.new(6011110035054288)
-	p card.check_card == true
+	valid_card = CreditCard.new(6011110035054288)
+	p valid_card.check_card == true
 
 
 p "Returns false for a bad card number"
-	card = CreditCard.new(4563961122001999)
-	p card.check_card == false
+	invalid_card = CreditCard.new(4563961122001999)
+	p invalid_card.check_card == false
 
 
 
