@@ -3,7 +3,7 @@ Define the following commands and describe how they work/what they do.
 
 
 #### add
-<!-- Your defnition here -->
+adds file name specificed to staging area
 
 #### branch
 <!-- Your defnition here -->
