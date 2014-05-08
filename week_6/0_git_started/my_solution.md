@@ -3,19 +3,19 @@ Define the following commands and describe how they work/what they do.
 
 
 #### add
-adds file name specificed to staging area
+adds file name specificed to staging area. 
 
 #### branch
-<!-- Your defnition here -->
+creates a new branch no need to specify an addition here, like '-m'. Just write the name of the new branch after the command.
 
 #### checkout
-<!-- Your defnition here -->
+takes a look at a different branch in a repository
 
 #### clone
 <!-- Your defnition here -->
 
 #### commit
-<!-- Your defnition here -->
+Takes a snapshot of repository, including any changes you've made since the last commit or snapshot. add a message with -m 'message content'
 
 #### fetch
 <!-- Your defnition here -->
@@ -39,7 +39,7 @@ adds file name specificed to staging area
 <!-- Your defnition here -->
 
 #### status
-
+pulls a message with any untracked files, and which changes have been made, as well as changes (by file name) that are in the staging area
 
 ## Release 4: Git Workflow
 
