@@ -26,15 +26,18 @@ def close
 end 
 
 def add_item (item)
+	raise "This drawer isn't open..." unless @open == true
 	@contents << item
 end
 
 def remove_item(item = @contents.pop) #what is `#pop` doing?
 	##pop takes the last member of the array @contents, and removes it
+	raise "This drawer isn't open..." unless @open == true
 	@contents.delete(item)
 end
 
 def dump  # what should this method return? AN EMPTY ARRAY!
+	raise "This drawer isn't open..." unless @open == true
 	@contents = []
 	puts "Your drawer is empty."
 end
@@ -66,53 +69,93 @@ def eat
 end
 
 def clean_silverware?
+	@clean == true
+end
+
+def clean
 	@clean = true
 end
 
 end
 
-knife1 = Silverware.new("knife")
+# knife1 = Silverware.new("knife")
 
-silverware_drawer = Drawer.new
-silverware_drawer.add_item(knife1) 
-silverware_drawer.add_item(Silverware.new("spoon"))
-silverware_drawer.add_item(Silverware.new("fork")) 
-silverware_drawer.view_contents
+# silverware_drawer = Drawer.new
+# silverware_drawer.add_item(knife1) 
+# silverware_drawer.add_item(Silverware.new("spoon"))
+# silverware_drawer.add_item(Silverware.new("fork")) 
+# silverware_drawer.view_contents
 
-silverware_drawer.remove_item
-silverware_drawer.view_contents
-sharp_knife = Silverware.new("sharp_knife")
-
-
-silverware_drawer.add_item(sharp_knife)
-
-silverware_drawer.view_contents
-
-removed_knife = silverware_drawer.remove_item(sharp_knife)
-removed_knife.eat
-removed_knife.clean_silverware?
+# silverware_drawer.remove_item
+# silverware_drawer.view_contents
+# sharp_knife = Silverware.new("sharp_knife")
 
 
-silverware_drawer.view_contents
-silverware_drawer.dump
-silverware_drawer.view_contents #What should this return?
-fork = Silverware.new("fork")
-silverware_drawer.add_item(fork) 
-silverware_drawer.view_contents
+# silverware_drawer.add_item(sharp_knife)
 
-fork = silverware_drawer.remove_item(fork) #add some puts statements to help you trace through the code...
-silverware_drawer.view_contents
+# silverware_drawer.view_contents
 
-fork.eat
+# removed_knife = silverware_drawer.remove_item(sharp_knife)
+# removed_knife.eat
+# removed_knife.clean_silverware?
+
+
+# silverware_drawer.view_contents
+# silverware_drawer.dump
+# silverware_drawer.view_contents #What should this return?
+# fork = Silverware.new("fork")
+# silverware_drawer.add_item(fork) 
+# silverware_drawer.view_contents
+
+# fork = silverware_drawer.remove_item(fork) #add some puts statements to help you trace through the code...
+# silverware_drawer.view_contents
+
+# fork.eat
 
 #BONUS SECTION
 # puts fork.clean
 
 # DRIVER TESTS GO BELOW THIS LINE
+def assert
+	raise "assertion failed" unless yield
+	puts true
+end
 
+new_drawer = Drawer.new
+spork = Silverware.new("spork", false)
+new_drawer.open.add_item(spork).close
+
+
+assert { new_drawer.contents == [spork] }
+assert { spork.clean_silverware? == false }
+
+silver_spoon = Silverware.new("spoon")
+new_drawer.open.add_item(silver_spoon)
+
+assert { new_drawer.contents == [spork, silver_spoon] }
+assert { new_drawer.view_contents == [spork, silver_spoon] }
+assert { silver_spoon.clean_silverware? == true }
+assert { silver_spoon.type == "spoon"}
+
+new_drawer.remove_item(silver_spoon)
+
+assert { new_drawer.contents == [spork] }
+
+spork.eat
+
+assert { spork.clean_silverware? == false}
+
+spork.clean
+
+assert { spork.clean_silverware? == true }
+
+new_drawer.dump
+
+assert { new_drawer.contents == [] }
 
 
 
 
 
 # 5. Reflection 
+#I noticed there there is space to mess with whether the drawer is open or closed
