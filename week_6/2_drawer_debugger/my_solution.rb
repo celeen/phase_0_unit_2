@@ -1,7 +1,7 @@
 # U2.W6: Drawer Debugger
 
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge [by myself].
 
 
 # 2. Original Code
@@ -25,21 +25,28 @@ def close
 	@open = false
 end 
 
-def add_item
+def add_item (item)
 	@contents << item
 end
 
 def remove_item(item = @contents.pop) #what is `#pop` doing?
+	##pop takes the last member of the array @contents, and removes it
 	@contents.delete(item)
 end
 
-def dump  # what should this method return?
+def dump  # what should this method return? AN EMPTY ARRAY!
+	@contents = []
 	puts "Your drawer is empty."
 end
 
 def view_contents
+	if @contents.length > 0
 	puts "The drawer contains:"
 	@contents.each {|silverware| puts "- " + silverware.type }
+	else puts "Your drawer is empty."
+	end
+end
+
 end
 
 
@@ -56,6 +63,10 @@ end
 def eat
 	puts "eating with the #{type}"
 	@clean = false
+end
+
+def clean_silverware?
+	@clean = true
 end
 
 end
@@ -79,14 +90,19 @@ silverware_drawer.view_contents
 
 removed_knife = silverware_drawer.remove_item(sharp_knife)
 removed_knife.eat
-removed_knife.clean_silverware 
+removed_knife.clean_silverware?
+
 
 silverware_drawer.view_contents
 silverware_drawer.dump
 silverware_drawer.view_contents #What should this return?
-
+fork = Silverware.new("fork")
+silverware_drawer.add_item(fork) 
+silverware_drawer.view_contents
 
 fork = silverware_drawer.remove_item(fork) #add some puts statements to help you trace through the code...
+silverware_drawer.view_contents
+
 fork.eat
 
 #BONUS SECTION
