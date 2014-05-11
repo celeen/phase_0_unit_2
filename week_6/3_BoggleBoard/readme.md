@@ -17,7 +17,7 @@ To do this, take a look at the methods you've created.  How can they be integrat
  Transform your [Driver Test Code](../../references/driver_code.md) so that it creates a new board object. You'll need to pass the original 2D array as an argument. (Let's call that `dice_grid` because boggle_board is going to be its own object now!) This is already in your [solution](my_solution.rb) file. How does the `boggle_board` object hold the `dice_grid`?
 
 ## Release 1: Implement your methods
-One method at a time, create a test to access your new `boggle_board` object. The first method should be `#create_word`. (Don't get thrown off with the `#method_name` syntax, using `#` before a method name is a ruby convention.) Write out a test with it's expectation in a comment, and then create the method in the `BoggleBoard` class. Try these coordinates: (1,2), (1,1), (2,1), (3,2).
+One method at a time, create a test to access your new `boggle_board` object. The first method should be `#create_word`. (Don't get thrown off with the `#method_name` syntax, using `#` before a method name is a ruby convention.) Write out a test with its expectation in a comment, and then create the method in the `BoggleBoard` class. Try these coordinates: (1,2), (1,1), (2,1), (3,2).
 
 Then, write methods for `#get_row` and `#get_col`.  Can you interact with the boggle_board object and get the values you expect?  Now print out all the rows and columns of the board as strings. You should end up with 8 four letter words. Are there any real words shown? Add your total output as a comment in your gist.
 
