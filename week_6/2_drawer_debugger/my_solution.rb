@@ -26,18 +26,15 @@ def close
 end 
 
 def add_item (item)
-	raise "This drawer isn't open..." unless @open == true
 	@contents << item
 end
 
 def remove_item(item = @contents.pop) #what is `#pop` doing?
 	##pop takes the last member of the array @contents, and removes it
-	raise "This drawer isn't open..." unless @open == true
 	@contents.delete(item)
 end
 
 def dump  # what should this method return? AN EMPTY ARRAY!
-	raise "This drawer isn't open..." unless @open == true
 	@contents = []
 	puts "Your drawer is empty."
 end
@@ -123,14 +120,14 @@ end
 
 new_drawer = Drawer.new
 spork = Silverware.new("spork", false)
-new_drawer.open.add_item(spork).close
+new_drawer.add_item(spork)
 
 
 assert { new_drawer.contents == [spork] }
 assert { spork.clean_silverware? == false }
 
 silver_spoon = Silverware.new("spoon")
-new_drawer.open.add_item(silver_spoon)
+new_drawer.add_item(silver_spoon)
 
 assert { new_drawer.contents == [spork, silver_spoon] }
 assert { new_drawer.view_contents == [spork, silver_spoon] }
@@ -152,10 +149,13 @@ assert { spork.clean_silverware? == true }
 new_drawer.dump
 
 assert { new_drawer.contents == [] }
+assert { new_drawer == [] }
 
 
 
 
 
 # 5. Reflection 
-#I noticed there there is space to mess with whether the drawer is open or closed
+#I noticed there there is space to mess with whether the drawer is open or closed, but it seems like the functionality I'd gain in the program from implimenting requirement to open the drawer wouldn't really be worth the work required to make it happen.
+
+#If I knew how to make it so that these methods coul be chained, it might be easier. Perhaps I'm thinking too practically/literally, but it does seem to me as if the open/close process could be assumed in this context. These are *virtual* drawers. Do we really need to open them?
