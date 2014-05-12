@@ -113,3 +113,7 @@ assert { CreditCard.new(4408041234567892).check_card == false }
 
 
 # Reflection 
+
+#I have forgotten to do a lot of these this week. I will have to go back and remedy that.
+
+#this was an interesting challenge because 'readability' is so subjective. It's fun to make code as short as I possibly can, but the shortest code isn't always the easiest to read. I think I might do well with a bit more practice at naming variables well. 
