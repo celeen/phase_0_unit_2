@@ -144,3 +144,5 @@ assert { my_playlist.includes?(one_by_one) == true }
 
 
 # Reflection 
+
+#This one was hard only because I am fried this week. I kept making really stupid mistakes because my brain wouldn't make thiny things happen well. Unless I missed something, tohugh, it was pretty good. For a while I went down a dead end thinking method scope was similar to variable scope. It is in that they have scope, but it isn't in that the context of each data structure's scope is completely different. And also I was never using method scope in this exercise.

@@ -57,3 +57,5 @@ assert {invalid_card.check_card == false}
 
 
 # 5. Reflection
+#I don't know if you saw github, but this exercise ended up being a todo for me. I wasn't too concerned about my addition not returning as I expected, but I had a *lot* of trouble communicating what my issue with it was to others, and what confuses me is how confused the others involved were by my desire to puts yield, or even to puts a validating statement after the assertion passes or fails. Isn't prt of the goal here to communicate clearly with the user, even if the user is you, or another programmer?
+#In any case, this exercise helped me to develop a very thorough understanding of both yield and assert.

@@ -46,7 +46,20 @@ pulls a message with any untracked files, and which changes have been made, as w
 ## Release 4: Git Workflow
 
 - Push files to a remote repository
+- 
+- git push origin master
+
 - Fetch changes
+- git fetch origin
+- 
 - Commit locally
+- git commit -a -m "commit message"
+
+
 
 ## Release 5: Reflection
+I want to change the name from origin to 'github' because why not? if you can name your remotes, why not give them more accurate titles?
+
+I also learned how to change a commit message:
+git commit --amend "message"
+will amend your last commit with any other changes you've staged, or if you just want to change the commit message (like I did) you can stage the same file(s) without changes, and type a new message.

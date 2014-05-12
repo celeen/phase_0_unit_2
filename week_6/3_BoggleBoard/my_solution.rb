@@ -1,7 +1,7 @@
 # U2.W6: Create a BoggleBoard Class
 
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge [with: Lienha Carleton].
 
 
 # 2. Pseudocode
@@ -54,15 +54,16 @@ assert { boggle_board.get_row(3)[2] == "k" }
 # 4. Refactored Solution
 
 
-
+#We think the code is functional, and easy to read as is. To be fair, we inadvertently did some refactoring as we worked.
 
 
 
 # 1. DRIVER TESTS GO BELOW THIS LINE
 # create driver test code to retrieve a value at a coordinate here:
 
-
+#see above? under #driver tests?
 # implement tests for each of the methods here:
 
 
 # 5. Reflection 
+#Lienha did a lot of leading, but I don't think that was a bad thing. I learned exactly what acessors are and what they do, enough so that I was able to impliment them in other exercises.
